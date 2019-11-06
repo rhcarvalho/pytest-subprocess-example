@@ -2,18 +2,22 @@ import os.path
 import subprocess
 import sys
 
+import pytest
 
-def test_program():
-    completed_process = run_program(b"Rodolfo\n42\n")
+
+@pytest.mark.parametrize("input,want", [
+    pytest.param(b"Rodolfo\n42\n", {
+        "returncode": 0,
+        "stdout": b"What is your name: How old are you: Rodolfo will be 100 years old in the year 2072\n",
+        "stderr": b"",
+    }, id="Rodolfo"),
+])
+def test_program(input, want):
+    completed_process = run_program(input)
     got = {
         "returncode": completed_process.returncode,
         "stdout": completed_process.stdout,
         "stderr": completed_process.stderr,
-    }
-    want = {
-        "returncode": 0,
-        "stdout": b"What is your name: How old are you: Rodolfo will be 100 years old in the year 2072\n",
-        "stderr": b"",
     }
     assert got == want
 
