@@ -12,7 +12,7 @@ def test_program():
     }
     want = {
         "returncode": 0,
-        "stdout": b"Rodolfo will be 100 years old in the year 2020",
+        "stdout": b"What is your name: How old are you: Rodolfo will be 100 years old in the year 2072\n",
         "stderr": b"",
     }
     assert got == want
