@@ -16,6 +16,11 @@ import pytest
         "stdout": b"What is your name: How old are you: Marion will be 100 years old in the year 2090\n",
         "stderr": b"",
     }, id="Marion"),
+    pytest.param(b"hop\nI don't know the answer\n", {
+        "returncode": 1,
+        "stdout": b"What is your name: How old are you: ",
+        "stderr": b"Sorry, I could not understand your age!\n",
+    }, id="hop"),
 ])
 def test_program(input, want):
     completed_process = run_program(input)
