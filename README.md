@@ -47,6 +47,20 @@ Use `git log --oneline` to see a brief list of commit hashes and subjects.
 Use `git checkout [hash]` to change into a given commit, replacing "[hash]" with
 a value from the `git log` command above.
 
+## reusable_program_test.py and reusable_program.py
+
+There is an alternative strategy that avoids using `subprocess`: instead, we
+focus our testing in the parts of the program that have no side effects (e.g.
+reading from *stdin* and writing to *stdout*). These tests are much faster to
+run and less error prone.
+
+We then use our code as a library and add another layer on top of it that does
+the interaction with the user by asking for values and then printing the result.
+
+Among other benefits, this let's you easily reuse components of your code. For
+example, there could be two alternative ways to interact with the program like a
+command line and a Web interface, while the core logic is shared.
+
 <!--
 
 ## Origin
